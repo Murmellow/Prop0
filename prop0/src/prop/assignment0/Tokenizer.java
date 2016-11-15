@@ -66,11 +66,12 @@ public class Tokenizer implements ITokenizer {
 		} else if (ch == '{') {
 			scanner.moveNext();
 			return new Lexeme(ch, Token.LEFT_CURLY);
-		} else if (ch == '}')
-			return new Lexeme(ch, Token.RIGHT_CURLY);
-		else if (symbols.containsKey(ch)) {
+		} else if (ch == '}') {
 			scanner.moveNext();
-			return new Lexeme(ch, symbols.get(ch));
+			return new Lexeme(ch, Token.RIGHT_CURLY);
+			// else if (symbols.containsKey(ch)) {
+			// scanner.moveNext();
+			// return new Lexeme(ch, symbols.get(ch));
 		} else
 			throw new TokenizerException("Unknown character: " + String.valueOf(ch));
 	}

@@ -1,0 +1,11 @@
+PARSE TREE:
+AssignmentNode
+	IDENT a
+	null
+	null
+ExpressionNode
+null
+null
+
+EVALUATION:
+null

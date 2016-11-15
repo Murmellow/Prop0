@@ -5,7 +5,8 @@ import java.io.OutputStreamWriter;
 
 public class Program {
 	public static void main(String[] args) {
-		args = new String[] { "C:\\Users\\yahya\\workspace\\PROP_Assignment0\\src\\prop\\assignment0\\program1.txt", "HAMAkabanka.txt" };
+		//args = new String[] { "C:\\Users\\yahya\\workspace\\PROP_Assignment0\\src\\prop\\assignment0\\program1.txt", "HAMAkabanka.txt" };
+		args = new String[] { "C:\\Users\\yahya\\Desktop\\test.txt", "HAMAkabanka.txt" };
 		String inputFileName = null;
 		String outputFileName = null;
 		IParser parser = null;
