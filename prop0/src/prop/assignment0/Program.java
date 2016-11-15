@@ -5,6 +5,7 @@ import java.io.OutputStreamWriter;
 
 public class Program {
 	public static void main(String[] args) {
+		args = new String[] { "C:\\Users\\yahya\\workspace\\PROP_Assignment0\\src\\prop\\assignment0\\program1.txt", "HAMAkabanka.txt" };
 		String inputFileName = null;
 		String outputFileName = null;
 		IParser parser = null;
@@ -12,14 +13,14 @@ public class Program {
 		StringBuilder builder = null;
 		FileOutputStream stream = null;
 		OutputStreamWriter writer = null;
-		
+
 		try {
 			try {
 				if (args.length < 2)
 					throw new Exception("Incorrect number of parameters to program.");
 				inputFileName = args[0];
 				outputFileName = args[1];
-				
+
 				parser = new Parser();
 				parser.open(inputFileName);
 				root = parser.parse();
@@ -28,15 +29,13 @@ public class Program {
 				root.buildString(builder, 0);
 				builder.append("\nEVALUATION:\n");
 				builder.append(root.evaluate(null));
-				
+
 				stream = new FileOutputStream(outputFileName);
 				writer = new OutputStreamWriter(stream);
 				writer.write(builder.toString());
-			}
-			catch (Exception exception) {
+			} catch (Exception exception) {
 				System.out.println("EXCEPTION: " + exception);
-			}
-			finally {
+			} finally {
 				if (parser != null)
 					parser.close();
 				if (writer != null)
@@ -44,8 +43,8 @@ public class Program {
 				if (stream != null)
 					stream.close();
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
+			exception.printStackTrace(System.out);
 			System.out.println("EXCEPTION: " + exception);
 		}
 	}
