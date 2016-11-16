@@ -5,7 +5,9 @@ import java.io.OutputStreamWriter;
 
 public class Program {
 	public static void main(String[] args) {
-		//args = new String[] { "C:\\Users\\yahya\\workspace\\PROP_Assignment0\\src\\prop\\assignment0\\program1.txt", "C:\\Users\\yahya\\Desktop\\out.txt" };
+		// args = new String[] {
+		// "C:\\Users\\yahya\\workspace\\PROP_Assignment0\\src\\prop\\assignment0\\program1.txt",
+		// "C:\\Users\\yahya\\Desktop\\out.txt" };
 		args = new String[] { "C:\\Users\\yahya\\Desktop\\test.txt", "C:\\Users\\yahya\\Desktop\\out.txt" };
 		String inputFileName = null;
 		String outputFileName = null;
@@ -36,7 +38,7 @@ public class Program {
 				writer.write(builder.toString());
 			} catch (Exception exception) {
 				System.out.println("EXCEPTION: " + exception);
-				exception.printStackTrace(System.out);
+				// exception.printStackTrace(System.out);
 			} finally {
 				if (parser != null)
 					parser.close();

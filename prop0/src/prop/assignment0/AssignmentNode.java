@@ -20,7 +20,7 @@ public class AssignmentNode implements INode {
 				//t.moveNext();
 				if (t.current().token() == Token.SEMICOLON) {
 					semiColonLexeme = t.current();
-					//t.moveNext();
+					t.moveNext();
 				} else {
 					throw new ParserException("Invalid Expression: " + String.valueOf(t.current()));
 				}

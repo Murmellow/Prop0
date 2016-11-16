@@ -9,14 +9,14 @@ public class TermNode implements INode {
 
 	public TermNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
 		factorNode = new FactorNode(t);
-		//t.moveNext(); [keep it so]
 		if (t.current().token() == Token.MULT_OP || t.current().token() == Token.DIV_OP) {
 			opLexeme = t.current();
 			t.moveNext();
 			termNode = new TermNode(t);
-			//t.moveNext();
+			// t.moveNext();
 		} else {
-			//throw new ParserException("Invalid Expression: " + String.valueOf(t.current()));
+			// throw new ParserException("Invalid Expression: " +
+			// String.valueOf(t.current()));
 		}
 	}
 
