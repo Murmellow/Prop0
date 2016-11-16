@@ -25,10 +25,10 @@ public class TermNode implements INode {
 		Double d = (Double) factorNode.evaluate(args);
 		if (termNode != null) {
 			Double e = (Double) termNode.evaluate(args);
-			if (opLexeme.token() == Token.ADD_OP) {
-				return d + e;
+			if (opLexeme.token() == Token.MULT_OP) {
+				return d * e;
 			} else {
-				return d - e;
+				return d / e;
 			}
 		}
 		return d;
