@@ -16,7 +16,7 @@ public class FactorNode implements INode {
 			leftParLexeme = t.current();
 			t.moveNext();
 			expressionNode = new ExpressionNode(t);
-			//t.moveNext();
+			// t.moveNext();
 			if (t.current().token() == Token.RIGHT_PAREN) {
 				rightParLexeme = t.current();
 				t.moveNext();
@@ -29,8 +29,12 @@ public class FactorNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if (intLexeme != null) {
+			System.out.print(intLexeme.value());
+			return (Double) intLexeme.value();
+		} else {
+			return (Double) expressionNode.evaluate(args);
+		}
 	}
 
 	@Override

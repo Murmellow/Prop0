@@ -34,7 +34,6 @@ public class ExpressionNode implements INode {
 			}
 		}
 		return d;
-
 	}
 
 	@Override

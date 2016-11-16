@@ -30,8 +30,9 @@ public class AssignmentNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		return identLexeme.value().toString() + " " + assignLexeme.value().toString() + " " + expressionNode.evaluate(args);
-		//return null;
+		return identLexeme.value().toString() + " " + assignLexeme.value().toString() + " "
+				+ (Double) expressionNode.evaluate(args);
+		// return null;
 	}
 
 	@Override
@@ -42,9 +43,9 @@ public class AssignmentNode implements INode {
 		}
 		builder.append("AssignmentNode" + "\n");
 		builder.append(tabString + "\t" + identLexeme + "\n");
-		builder.append(tabString + "\t" +assignLexeme + "\n");
+		builder.append(tabString + "\t" + assignLexeme + "\n");
 		expressionNode.buildString(builder, tabs + 1);
-		builder.append(tabString + "\t" +semiColonLexeme + "\n");
+		builder.append(tabString + "\t" + semiColonLexeme + "\n");
 
 	}
 

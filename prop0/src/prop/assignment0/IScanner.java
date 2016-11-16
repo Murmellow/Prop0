@@ -8,7 +8,7 @@ public interface IScanner {
 	 * Opens a file for scanning.
 	 */
 	void open(String fileName) throws FileNotFoundException;
-	
+
 	/**
 	 * Returns the current character in the stream.
 	 */
@@ -22,5 +22,5 @@ public interface IScanner {
 	/**
 	 * Closes the file and releases any system resources associated with it.
 	 */
-	public void close() throws IOException ;
+	public void close() throws IOException;
 }

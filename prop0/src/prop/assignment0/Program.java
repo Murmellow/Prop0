@@ -38,7 +38,7 @@ public class Program {
 				writer.write(builder.toString());
 			} catch (Exception exception) {
 				System.out.println("EXCEPTION: " + exception);
-				// exception.printStackTrace(System.out);
+				exception.printStackTrace(System.out);
 			} finally {
 				if (parser != null)
 					parser.close();

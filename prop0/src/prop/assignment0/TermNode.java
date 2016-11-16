@@ -22,8 +22,16 @@ public class TermNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-
-		return null;
+		Double d = (Double) factorNode.evaluate(args);
+		if (termNode != null) {
+			Double e = (Double) termNode.evaluate(args);
+			if (opLexeme.token() == Token.ADD_OP) {
+				return d + e;
+			} else {
+				return d - e;
+			}
+		}
+		return d;
 	}
 
 	@Override
