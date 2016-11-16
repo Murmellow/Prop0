@@ -82,7 +82,7 @@ public class Tokenizer implements ITokenizer {
 			strBuilder.append(scanner.current());
 			scanner.moveNext();
 		}
-		return new Lexeme(strBuilder.toString(), Token.INT_LIT);
+		return new Lexeme(Double.parseDouble(strBuilder.toString()), Token.INT_LIT);
 	}
 
 	private Lexeme extractIdentifier() throws IOException {

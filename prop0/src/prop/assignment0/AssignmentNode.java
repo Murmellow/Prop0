@@ -17,7 +17,7 @@ public class AssignmentNode implements INode {
 				assignLexeme = t.current();
 				t.moveNext();
 				expressionNode = new ExpressionNode(t);
-				//t.moveNext();
+				// t.moveNext();
 				if (t.current().token() == Token.SEMICOLON) {
 					semiColonLexeme = t.current();
 					t.moveNext();
@@ -36,11 +36,15 @@ public class AssignmentNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
+		String tabString = "";
+		for (int i = 0; i < tabs; i++) {
+			tabString += "\t";
+		}
 		builder.append("AssignmentNode" + "\n");
-		builder.append("\t" + identLexeme + "\n");
-		builder.append("\t" + assignLexeme + "\n");
+		builder.append(tabString + "\t" + identLexeme + "\n");
+		builder.append(tabString + "\t" +assignLexeme + "\n");
 		expressionNode.buildString(builder, tabs + 1);
-		builder.append("\t" + semiColonLexeme + "\n");
+		builder.append(tabString + "\t" +semiColonLexeme + "\n");
 
 	}
 

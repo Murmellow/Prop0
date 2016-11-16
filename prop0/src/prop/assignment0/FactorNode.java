@@ -35,13 +35,17 @@ public class FactorNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		builder.append("FactorNode" + "\n");
+		String tabString = "";
+		for (int i = 0; i < tabs; i++) {
+			tabString += "\t";
+		}
+		builder.append(tabString + "FactorNode" + "\n");
 		if (intLexeme != null) {
-			builder.append("\t" + intLexeme + "\n");
+			builder.append(tabString + "\t" + intLexeme + "\n");
 		} else {
-			builder.append("\t" + leftParLexeme + "\n");
+			builder.append(tabString + "\t" + leftParLexeme + "\n");
 			expressionNode.buildString(builder, tabs + 1);
-			builder.append("\t" + rightParLexeme + "\n");
+			builder.append(tabString + "\t" + rightParLexeme + "\n");
 		}
 	}
 

@@ -28,10 +28,14 @@ public class TermNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		builder.append("TermNode" + "\n");
+		String tabString = "";
+		for (int i = 0; i < tabs; i++) {
+			tabString += "\t";
+		}
+		builder.append(tabString + "TermNode" + "\n");
 		factorNode.buildString(builder, tabs + 1);
 		if (opLexeme != null) {
-			builder.append("\t" + opLexeme + "\n");
+			builder.append(tabString + "\t" + opLexeme + "\n");
 			termNode.buildString(builder, tabs + 1);
 		}
 
