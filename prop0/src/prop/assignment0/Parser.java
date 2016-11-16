@@ -16,9 +16,9 @@ public class Parser implements IParser {
 	public INode parse() throws IOException, TokenizerException, ParserException {
 		if (t == null)
 			throw new IOException("No open file.");
-
-		return new AssignmentNode(t);
-
+		else {
+			return new AssignmentNode(t);
+		}
 	}
 
 	@Override

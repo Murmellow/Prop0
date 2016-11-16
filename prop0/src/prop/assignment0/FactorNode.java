@@ -1,23 +1,29 @@
 package prop.assignment0;
 
+import java.io.IOException;
+
 public class FactorNode implements INode {
 	private Lexeme leftParLexeme = null;
 	private Lexeme rightParLexeme = null;
 	private ExpressionNode expressionNode = null;
 	private Lexeme intLexeme = null;
 
-	public FactorNode(Tokenizer t) {
-		if (t.current().token() == Token.INT_LIT)
+	public FactorNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
+		if (t.current().token() == Token.INT_LIT) {
 			intLexeme = t.current();
-		else if (t.current().token() == Token.LEFT_PAREN )
+			t.moveNext();
+		} else if (t.current().token() == Token.LEFT_PAREN) {
 			leftParLexeme = t.current();
-		else if (t.current().token() == Token.RIGHT_PAREN )
-			rightParLexeme = t.current();
-		else {
+			t.moveNext();
 			expressionNode = new ExpressionNode(t);
+			//t.moveNext();
+			if (t.current().token() == Token.RIGHT_PAREN)
+				rightParLexeme = t.current();
+				t.moveNext();
+		} else {
+			throw new TokenizerException("Invalid Expression" + String.valueOf(t.current()));
 		}
 	}
-
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
@@ -28,15 +34,11 @@ public class FactorNode implements INode {
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
 		builder.append("FactorNode" + "\n");
-		builder.append("\t"+intLexeme + "\n");
-		builder.append("\t"+leftParLexeme + "\n");
-		builder.append("ExpressionNode" + "\n");
-		builder.append("\t"+rightParLexeme + "\n");
-
-
+		builder.append("\t" + intLexeme + "\n");
+		builder.append("\t" + leftParLexeme + "\n");
+		expressionNode.buildString(builder, tabs + 1);
+		builder.append("\t" + rightParLexeme + "\n");
 
 	}
-		
-	}
 
-
+}

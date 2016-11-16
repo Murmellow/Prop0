@@ -1,21 +1,24 @@
 package prop.assignment0;
 
+import java.io.IOException;
+
 public class ExpressionNode implements INode {
 
 	private TermNode termNode = null;
-	private Lexeme addOpLexeme = null;
-	private Lexeme subOpLexeme = null;
+	private Lexeme opLexeme = null;
 	private ExpressionNode expressionNode = null;
 
-	public ExpressionNode(Tokenizer t) {
-		if (t.current().token() == Token.ADD_OP)
-			addOpLexeme = t.current();
-		else if (t.current().token() == Token.SUB_OP)
-			subOpLexeme = t.current();
-		else {
-			termNode = new TermNode(t);
+	public ExpressionNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
+		termNode = new TermNode(t);
+		t.moveNext();
+		if (t.current().token() == Token.ADD_OP || t.current().token() == Token.SUB_OP) {
+			opLexeme = t.current();
+			t.moveNext();
+			expressionNode = new ExpressionNode(t);
+			//t.moveNext();
+		} else {
+			throw new TokenizerException("Invalid Expression" + String.valueOf(t.current()));
 		}
-		
 	}
 
 	@Override
@@ -27,8 +30,11 @@ public class ExpressionNode implements INode {
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
 		builder.append("ExpressionNode" + "\n");
-		builder.append(addOpLexeme + "\n");
-		builder.append(subOpLexeme + "\n");
+		termNode.buildString(builder, tabs + 1);
+		if (opLexeme != null) {
+			builder.append("\t" + opLexeme + "\n");
+			expressionNode.buildString(builder, tabs + 1);
+		}
 	}
 
 }

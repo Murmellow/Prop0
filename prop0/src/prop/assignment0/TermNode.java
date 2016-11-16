@@ -1,19 +1,22 @@
 package prop.assignment0;
 
+import java.io.IOException;
+
 public class TermNode implements INode {
 	private FactorNode factorNode = null;
-	private Lexeme mulOpLexeme = null;
-	private Lexeme devOpLexeme = null;
+	private Lexeme opLexeme = null;
 	private TermNode termNode = null;
 
-
-	public TermNode(Tokenizer t) {
-		if (t.current().token() == Token.MULT_OP)
-			mulOpLexeme = t.current();
-		else if (t.current().token() == Token.DIV_OP )
-			devOpLexeme = t.current();
-		else {
-			factorNode = new FactorNode(t);
+	public TermNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
+		factorNode = new FactorNode(t);
+		t.moveNext();
+		if (t.current().token() == Token.MULT_OP || t.current().token() == Token.DIV_OP) {
+			opLexeme = t.current();
+			t.moveNext();
+			termNode = new TermNode(t);
+			t.moveNext();
+		} else {
+			throw new TokenizerException("Invalid Expression" + String.valueOf(t.current()));
 		}
 	}
 
@@ -26,10 +29,12 @@ public class TermNode implements INode {
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
 		builder.append("TermNode" + "\n");
-		builder.append("\t"+mulOpLexeme + "\n");
-		builder.append("\t"+devOpLexeme + "\n");
-		
-		
+		factorNode.buildString(builder, tabs + 1);
+		if (opLexeme != null) {
+			builder.append("\t" + opLexeme + "\n");
+			termNode.buildString(builder, tabs + 1);
+		}
+
 	}
 
 }

@@ -10,16 +10,23 @@ public class AssignmentNode implements INode {
 	private Lexeme semiColonLexeme = null;
 
 	public AssignmentNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
-		if (t.current().token() == Token.IDENT)
+		if (t.current().token() == Token.IDENT) {
 			identLexeme = t.current();
-		else if (t.current().token() == Token.ASSIGN_OP)
-			assignLexeme = t.current();
-		else if (t.current().token() == Token.SEMICOLON)
-			semiColonLexeme = t.current();
-		else {
-			expressionNode = new ExpressionNode(t);
+			t.moveNext();
+			if (t.current().token() == Token.ASSIGN_OP) {
+				assignLexeme = t.current();
+				t.moveNext();
+				expressionNode = new ExpressionNode(t);
+				//t.moveNext();
+				if (t.current().token() == Token.SEMICOLON) {
+					semiColonLexeme = t.current();
+					//t.moveNext();
+				} else {
+					throw new TokenizerException("Invalid Expression" + String.valueOf(t.current()));
+				}
+			}
 		}
-
+		throw new TokenizerException("Invalid Expression" + String.valueOf(t.current()));
 	}
 
 	@Override
@@ -33,8 +40,8 @@ public class AssignmentNode implements INode {
 		builder.append("AssignmentNode" + "\n");
 		builder.append("\t" + identLexeme + "\n");
 		builder.append("\t" + assignLexeme + "\n");
-		builder.append("\t" + semiColonLexeme + "\n");
 		expressionNode.buildString(builder, tabs + 1);
+		builder.append("\t" + semiColonLexeme + "\n");
 
 	}
 

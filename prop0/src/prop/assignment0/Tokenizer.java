@@ -35,11 +35,11 @@ public class Tokenizer implements ITokenizer {
 		Character ch = scanner.current();
 		if (ch == Scanner.EOF)
 			return new Lexeme(ch, Token.EOF);
-		else if (Character.isLetter(ch))
+		else if (Character.isLetter(ch)){
 			return extractIdentifier();
-		else if (Character.isDigit(ch))
+		}else if (Character.isDigit(ch)){
 			return extractInt();
-		else if (ch == '+') {
+		}else if (ch == '+') {
 			scanner.moveNext();
 			return new Lexeme(ch, Token.ADD_OP);
 		} else if (ch == '-') {
@@ -69,9 +69,9 @@ public class Tokenizer implements ITokenizer {
 		} else if (ch == '}') {
 			scanner.moveNext();
 			return new Lexeme(ch, Token.RIGHT_CURLY);
-			// else if (symbols.containsKey(ch)) {
-			// scanner.moveNext();
-			// return new Lexeme(ch, symbols.get(ch));
+//		}else if (symbols.containsKey(ch)) {
+//			 scanner.moveNext();
+//			 return new Lexeme(ch, symbols.get(ch));
 		} else
 			throw new TokenizerException("Unknown character: " + String.valueOf(ch));
 	}
