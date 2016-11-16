@@ -22,7 +22,7 @@ public class TermNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

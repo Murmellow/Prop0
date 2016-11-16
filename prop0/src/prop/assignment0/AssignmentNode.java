@@ -30,8 +30,8 @@ public class AssignmentNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return identLexeme.value().toString() + " " + assignLexeme.value().toString() + " " + expressionNode.evaluate(args);
+		//return null;
 	}
 
 	@Override

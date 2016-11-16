@@ -15,7 +15,7 @@ public class ExpressionNode implements INode {
 			opLexeme = t.current();
 			t.moveNext();
 			expressionNode = new ExpressionNode(t);
-			//t.moveNext();
+			// t.moveNext();
 		} else {
 			// throw new ParserException("Invalid Expression: " +
 			// String.valueOf(t.current()));
@@ -24,8 +24,17 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Double d = (Double) termNode.evaluate(args);
+		if (expressionNode != null) {
+			Double e = (Double) expressionNode.evaluate(args);
+			if (opLexeme.token() == Token.ADD_OP) {
+				return d + e;
+			} else {
+				return d - e;
+			}
+		}
+		return d;
+
 	}
 
 	@Override
