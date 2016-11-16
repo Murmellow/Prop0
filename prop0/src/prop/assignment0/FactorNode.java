@@ -16,12 +16,12 @@ public class FactorNode implements INode {
 			leftParLexeme = t.current();
 			t.moveNext();
 			expressionNode = new ExpressionNode(t);
-			//t.moveNext();
+			t.moveNext();
 			if (t.current().token() == Token.RIGHT_PAREN)
 				rightParLexeme = t.current();
-				t.moveNext();
+				//t.moveNext();
 		} else {
-			throw new TokenizerException("Invalid Expression" + String.valueOf(t.current()));
+			throw new ParserException("Invalid Expression: " + String.valueOf(t.current()));
 		}
 	}
 
@@ -34,11 +34,13 @@ public class FactorNode implements INode {
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
 		builder.append("FactorNode" + "\n");
+		if ( intLexeme != null){
 		builder.append("\t" + intLexeme + "\n");
+		}else{
 		builder.append("\t" + leftParLexeme + "\n");
 		expressionNode.buildString(builder, tabs + 1);
 		builder.append("\t" + rightParLexeme + "\n");
-
+		}
 	}
 
 }

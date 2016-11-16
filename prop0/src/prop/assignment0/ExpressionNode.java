@@ -10,14 +10,14 @@ public class ExpressionNode implements INode {
 
 	public ExpressionNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
 		termNode = new TermNode(t);
-		t.moveNext();
+		//t.moveNext();
 		if (t.current().token() == Token.ADD_OP || t.current().token() == Token.SUB_OP) {
 			opLexeme = t.current();
 			t.moveNext();
 			expressionNode = new ExpressionNode(t);
-			//t.moveNext();
+			t.moveNext();
 		} else {
-			throw new TokenizerException("Invalid Expression" + String.valueOf(t.current()));
+			//throw new ParserException("Invalid Expression: " + String.valueOf(t.current()));
 		}
 	}
 

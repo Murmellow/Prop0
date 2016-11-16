@@ -22,11 +22,10 @@ public class AssignmentNode implements INode {
 					semiColonLexeme = t.current();
 					//t.moveNext();
 				} else {
-					throw new TokenizerException("Invalid Expression" + String.valueOf(t.current()));
+					throw new ParserException("Invalid Expression: " + String.valueOf(t.current()));
 				}
 			}
 		}
-		throw new TokenizerException("Invalid Expression" + String.valueOf(t.current()));
 	}
 
 	@Override
