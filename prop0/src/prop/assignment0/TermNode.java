@@ -6,6 +6,7 @@ public class TermNode implements INode {
 	private FactorNode factorNode = null;
 	private Lexeme opLexeme = null;
 	private TermNode termNode = null;
+	private Parser parserTabing = new Parser();
 
 	public TermNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
 		factorNode = new FactorNode(t);
@@ -36,14 +37,10 @@ public class TermNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		String tabString = "";
-		for (int i = 0; i < tabs; i++) {
-			tabString += "\t";
-		}
-		builder.append(tabString + "TermNode" + "\n");
+		builder.append(parserTabing.tabing(tabs) + "TermNode" + "\n");
 		factorNode.buildString(builder, tabs + 1);
 		if (opLexeme != null) {
-			builder.append(tabString + "\t" + opLexeme + "\n");
+			builder.append(parserTabing.tabing(tabs) + "\t" + opLexeme + "\n");
 			termNode.buildString(builder, tabs + 1);
 		}
 

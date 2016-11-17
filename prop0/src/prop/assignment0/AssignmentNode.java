@@ -8,6 +8,7 @@ public class AssignmentNode implements INode {
 	private Lexeme assignLexeme = null;
 	private ExpressionNode expressionNode = null;
 	private Lexeme semiColonLexeme = null;
+	private Parser parserTabing = new Parser();
 
 	public AssignmentNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
 		if (t.current().token() == Token.IDENT) {
@@ -37,15 +38,11 @@ public class AssignmentNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		String tabString = "";
-		for (int i = 0; i < tabs; i++) {
-			tabString += "\t";
-		}
 		builder.append("AssignmentNode" + "\n");
-		builder.append(tabString + "\t" + identLexeme + "\n");
-		builder.append(tabString + "\t" + assignLexeme + "\n");
+		builder.append(parserTabing.tabing(tabs + 1) + identLexeme + "\n");
+		builder.append(parserTabing.tabing(tabs + 1) + assignLexeme + "\n");
 		expressionNode.buildString(builder, tabs + 1);
-		builder.append(tabString + "\t" + semiColonLexeme + "\n");
+		builder.append(parserTabing.tabing(tabs + 1) + semiColonLexeme + "\n");
 
 	}
 

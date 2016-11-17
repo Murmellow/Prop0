@@ -27,4 +27,12 @@ public class Parser implements IParser {
 			t.close();
 	}
 
+	public String tabing(int tabs) {
+		String tabString = "";
+		for (int i = 0; i < tabs; i++) {
+			tabString += "\t";
+		}
+		return tabString;
+	}
+
 }

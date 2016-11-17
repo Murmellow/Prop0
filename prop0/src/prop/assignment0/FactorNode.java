@@ -7,6 +7,7 @@ public class FactorNode implements INode {
 	private Lexeme rightParLexeme = null;
 	private ExpressionNode expressionNode = null;
 	private Lexeme intLexeme = null;
+	private Parser parserTabing = new Parser();
 
 	public FactorNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
 		if (t.current().token() == Token.INT_LIT) {
@@ -39,17 +40,13 @@ public class FactorNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		String tabString = "";
-		for (int i = 0; i < tabs; i++) {
-			tabString += "\t";
-		}
-		builder.append(tabString + "FactorNode" + "\n");
+		builder.append(parserTabing.tabing(tabs) + "FactorNode" + "\n");
 		if (intLexeme != null) {
-			builder.append(tabString + "\t" + intLexeme + "\n");
+			builder.append(parserTabing.tabing(tabs + 1) + intLexeme + "\n");
 		} else {
-			builder.append(tabString + "\t" + leftParLexeme + "\n");
+			builder.append(parserTabing.tabing(tabs + 1) + leftParLexeme + "\n");
 			expressionNode.buildString(builder, tabs + 1);
-			builder.append(tabString + "\t" + rightParLexeme + "\n");
+			builder.append(parserTabing.tabing(tabs + 1) + rightParLexeme + "\n");
 		}
 	}
 

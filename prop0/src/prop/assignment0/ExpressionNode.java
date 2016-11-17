@@ -7,6 +7,7 @@ public class ExpressionNode implements INode {
 	private TermNode termNode = null;
 	private Lexeme opLexeme = null;
 	private ExpressionNode expressionNode = null;
+	private Parser parserTabing = new Parser();
 
 	public ExpressionNode(Tokenizer t) throws ParserException, TokenizerException, IOException {
 		termNode = new TermNode(t);
@@ -38,14 +39,10 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		String tabString = "";
-		for (int i = 0; i < tabs; i++) {
-			tabString += "\t";
-		}
-		builder.append(tabString + "ExpressionNode" + "\n");
+		builder.append(parserTabing.tabing(tabs) + "ExpressionNode" + "\n");
 		termNode.buildString(builder, tabs + 1);
 		if (opLexeme != null) {
-			builder.append(tabString + "\t" + opLexeme + "\n");
+			builder.append(parserTabing.tabing(tabs + 1) + opLexeme + "\n");
 			expressionNode.buildString(builder, tabs + 1);
 		}
 	}
