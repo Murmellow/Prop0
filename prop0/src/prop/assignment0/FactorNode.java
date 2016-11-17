@@ -31,7 +31,7 @@ public class FactorNode implements INode {
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
 		if (intLexeme != null) {
-			System.out.print(intLexeme.value());
+			// System.out.print(intLexeme.value());
 			return (Double) intLexeme.value();
 		} else {
 			return (Double) expressionNode.evaluate(args);

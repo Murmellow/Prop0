@@ -28,11 +28,11 @@ public class Parser implements IParser {
 	}
 
 	public String tabing(int tabs) {
-		String tabString = "";
+		String tab = "";
 		for (int i = 0; i < tabs; i++) {
-			tabString += "\t";
+			tab += "\t";
 		}
-		return tabString;
+		return tab;
 	}
 
 }
