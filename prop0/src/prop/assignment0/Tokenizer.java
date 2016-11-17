@@ -15,6 +15,16 @@ public class Tokenizer implements ITokenizer {
 	public Tokenizer() {
 		symbols = new HashMap<Character, Token>();
 		symbols.put(Scanner.EOF, Token.EOF);
+		symbols.put('+', Token.ADD_OP);
+		symbols.put('-', Token.SUB_OP);
+		symbols.put('*', Token.MULT_OP);
+		symbols.put('/', Token.DIV_OP);
+		symbols.put('=', Token.ASSIGN_OP);
+		symbols.put('(', Token.LEFT_PAREN);
+		symbols.put(')', Token.RIGHT_PAREN);
+		symbols.put(';', Token.SEMICOLON);
+		symbols.put('{', Token.LEFT_CURLY);
+		symbols.put('}', Token.RIGHT_CURLY);
 	}
 
 	@Override
@@ -39,36 +49,6 @@ public class Tokenizer implements ITokenizer {
 			return extractIdentifier();
 		} else if (Character.isDigit(ch)) {
 			return extractInt();
-		} else if (ch == '+') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.ADD_OP);
-		} else if (ch == '-') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.SUB_OP);
-		} else if (ch == '*') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.MULT_OP);
-		} else if (ch == '/') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.DIV_OP);
-		} else if (ch == '=') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.ASSIGN_OP);
-		} else if (ch == '(') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.LEFT_PAREN);
-		} else if (ch == ')') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.RIGHT_PAREN);
-		} else if (ch == ';') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.SEMICOLON);
-		} else if (ch == '{') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.LEFT_CURLY);
-		} else if (ch == '}') {
-			scanner.moveNext();
-			return new Lexeme(ch, Token.RIGHT_CURLY);
 		} else if (symbols.containsKey(ch)) {
 			scanner.moveNext();
 			return new Lexeme(ch, symbols.get(ch));
