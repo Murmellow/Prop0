@@ -1,30 +1,36 @@
+/*
+ Created by:
+ Yahya Ajwad (yaaj2898)
+ Max Jonsson (majo6981)
+ */
+
 package prop.assignment0;
 
 import java.io.IOException;
 
 public class Parser implements IParser {
-	Tokenizer t = null;
+	Tokenizer tokenizer = null;
 
 	@Override
 	public void open(String fileName) throws IOException, TokenizerException {
-		t = new Tokenizer();
-		t.open(fileName);
-		t.moveNext();
+		tokenizer = new Tokenizer();
+		tokenizer.open(fileName);
+		tokenizer.moveNext();
 	}
 
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {
-		if (t == null)
+		if (tokenizer == null)
 			throw new IOException("No open file.");
 		else {
-			return new AssignmentNode(t);
+			return new AssignmentNode(tokenizer);
 		}
 	}
 
 	@Override
 	public void close() throws IOException {
-		if (t != null)
-			t.close();
+		if (tokenizer != null)
+			tokenizer.close();
 	}
 
 	public String tabing(int tabs) {

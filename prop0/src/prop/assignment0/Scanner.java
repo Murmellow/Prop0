@@ -1,16 +1,19 @@
+/*
+ Created by:
+ Yahya Ajwad (yaaj2898)
+ Max Jonsson (majo6981)
+ */
+
 package prop.assignment0;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Scanner implements IScanner {
 	public static final char NULL = (char) 0;
-	public static final char EOF = (char) -1; // End of file.
+	public static final char EOF = (char) -1;
 
 	private FileInputStream stream = null;
 	private InputStreamReader reader = null;

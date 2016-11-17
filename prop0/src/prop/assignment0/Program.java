@@ -1,3 +1,9 @@
+/*
+ Created by:
+ Yahya Ajwad (yaaj2898)
+ Max Jonsson (majo6981)
+ */
+
 package prop.assignment0;
 
 import java.io.FileOutputStream;
@@ -10,7 +16,7 @@ public class Program {
 		String inputFileName = null;
 		String outputFileName = null;
 		IParser parser = null;
-		INode root = null; // Root of the parse tree.
+		INode root = null;
 		StringBuilder builder = null;
 		FileOutputStream stream = null;
 		OutputStreamWriter writer = null;
